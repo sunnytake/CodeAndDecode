@@ -1,5 +1,9 @@
 # coding=utf-8
 
+'''
+分治
+'''
+
 def swap(array, i, j):
     temp = array[i]
     array[i] = array[j]
