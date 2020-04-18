@@ -16,11 +16,11 @@ def getCirclrEnter(head):
     '''
     # 一个快指针，每次走两步；一个慢指针，每次走一步
     p_fast, p_slow = head, head
-    while p_fast and p_fast != p_slow:
+    while p_fast != p_slow:
+        if not p_fast.next or not p_fast.next.next:
+            return None
         p_slow = p_slow.next
         p_fast = p_fast.next.next
-    if p_fast is None:
-        return None
     # 快慢指针相交后，快指针从头开始，每次走一步，下次相交即为环入口
     p_fast = head
     while p_fast != p_slow:
@@ -88,6 +88,9 @@ def getCrossPoint2(head1, head2, p_circlr):
 
 
 def getCrossPoint(head1, head2):
+    if not head1 or not head2:
+        return None
+
     # 1. 判断是否有环
     p_circlr1 = getCirclrEnter(head1)
     p_circlr2 = getCirclrEnter(head2)
@@ -105,11 +108,10 @@ def getCrossPoint(head1, head2):
             # 判断是否为同一个环，若不是，返回空，若是则两个链表在环上相交，随便返回一个即可
             p_temp = p_circlr1.next
             while p_temp != p_circlr1:
-                p_temp = p_temp.next
                 # 两个链表有同一个环,返回环上任意节点即可
                 if p_temp == p_circlr2:
                     return p_circlr2
+                p_temp = p_temp.next
             return None
     # 一个有环一个没环，肯定不想交
-    else:
-        return None
+    return None
