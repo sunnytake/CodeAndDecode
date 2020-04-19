@@ -25,3 +25,23 @@ def posOrder(root):
             stack1.append(node.right)
 
     return res[::-1]
+
+def posOrder(root):
+    '''
+    不用翻转结果
+    :param root:
+    :return:
+    '''
+    if not root:
+        return []
+    stack, res = [root], []
+    while stack:
+        node = stack[-1]
+        if node.left and root != node.left and root != node.right:
+            stack.append(node.left)
+        elif node.right and root != node.right:
+            stack.append(node.right)
+        else:
+            res.append(stack.pop().val)
+            root = node
+    return res

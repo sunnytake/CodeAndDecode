@@ -9,7 +9,7 @@ def inOrderRecur(root):
     res += inOrderRecur(root.right)
     return res
 
-def preOrder(root):
+def inOrder(root):
     if not root:
         return []
     stack, res = [], []
