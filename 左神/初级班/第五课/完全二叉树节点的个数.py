@@ -12,6 +12,7 @@ def nodeNum(root):
         return 0
     return bs(root, 1, mostLeftLevel(root, 1))
 
+# 获取当前节点左子树的深度
 def mostLeftLevel(root, level):
     while root:
         level += 1
@@ -30,4 +31,4 @@ def bs(root, level, h):
     if mostLeftLevel(root.right, level+1) == h:
         return (1 << (h-level)) + bs(root.right, level+1, h)
     else:
-        return (1 << (h-level - 1)) + bs(root.left, level+1, h)
+        return (1 << (h-level-1)) + bs(root.left, level+1, h)
