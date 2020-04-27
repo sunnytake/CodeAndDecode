@@ -27,7 +27,7 @@ def getNext(pattern):
     index = 2
     while index < len(pattern):
         if pattern[index-1] == pattern[cur]:
-            cur = cur + 1
+            cur += 1
             nexts[index] = cur
             index += 1
         elif cur > 0:
