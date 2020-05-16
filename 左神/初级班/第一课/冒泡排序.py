@@ -6,6 +6,9 @@ def swap(array, i, j):
     array[j] = temp
 
 def bubbleSort(array):
+    '''
+    相邻元素不断交换位置
+    '''
     if not array or len(array) < 2:
         return
     for end in range(len(array)-1, 0, -1):

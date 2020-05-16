@@ -4,11 +4,6 @@
 分治
 '''
 
-def swap(array, i, j):
-    temp = array[i]
-    array[i] = array[j]
-    array[j] = temp
-
 def mergeSort(array):
     if not array or len(array) < 2:
         return

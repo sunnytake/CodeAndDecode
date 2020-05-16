@@ -26,7 +26,7 @@ def minSum(array):
 def minSumProcess(array, left, right):
     if left == right:
         return 0
-    mid = left + ((right - left) >> 1)
+    mid = left + ((right - left) // 2)
     return minSumProcess(array, left, mid) + minSumProcess(array, mid+1, right) + merge(array, left, mid, right)
 
 def merge(array, left, mid, right):
