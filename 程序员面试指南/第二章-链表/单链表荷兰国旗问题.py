@@ -40,6 +40,44 @@ def swap(nodes, i, j):
 
 # 进阶解法：保持稳定性，时间复杂度O(N)，空间复杂度O(1)
 # 利用3个临时链表，
+def listPartition2(head, pivot):
+    small_start, small_end, equal_start, equal_end, big_start, big_end = None, None, None, None, None, None
+    res = None
+    cur = head
+    while cur:
+        next = cur.next
+        cur.next = None
+        if cur.val < pivot:
+            if not small_start:
+                small_start = cur
+            else:
+                small_end.next = cur
+            small_end = cur
+        elif cur.val > pivot:
+            if not big_start:
+                big_start = cur
+            else:
+                big_end.next = cur
+            big_end = cur
+        else:
+            if not equal_start:
+                equal_start = cur
+            else:
+                equal_end.next = cur
+            equal_end = cur
+        cur = next
+    if small_end:
+        small_end.next = equal_start
+        if not equal_end:
+            equal_end = small_end
+    if equal_end:
+        equal_end.next = big_start
+    if small_start:
+        return small_start
+    elif equal_start:
+        return equal_start
+    else:
+        return big_start
 
 
 
