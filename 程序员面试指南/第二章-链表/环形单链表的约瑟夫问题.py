@@ -30,6 +30,25 @@ def josCirclr(head, m):
         head = last.next
     return head
 
+def josKill2(head, m):
+    if not head or not head.next or m < 1:
+        return head
+    node = head.next
+    length = 1
+    while node != head:
+        length += 1
+        node = node.next
+    pos = getLive(length, m)
+    while pos != 0:
+        head = head.next
+    head.next = head
+    return head
+
+def getLive(length, m):
+    if length == 1:
+        return 1
+    return (getLive(length-1, m) + m - 1) % length + 1
+
 if __name__ == '__main__':
     node1 = Node(1)
     node2 = Node(2)
