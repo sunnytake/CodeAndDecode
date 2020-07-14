@@ -5,16 +5,23 @@
 '''
 
 def mergeSort(array):
+    '''
+    时间复杂度O(N*logN)
+    空间复杂度O(N)
+    稳定
+    :param array:
+    :return:
+    '''
     if not array or len(array) < 2:
         return
-    sortProcess(array, 0, len(array)-1)
+    process(array, 0, len(array)-1)
 
-def sortProcess(array, left, right):
+def process(array, left, right):
     if left >= right:
         return
     mid = left + ((right-left) >> 1)
-    sortProcess(array, left, mid)
-    sortProcess(array, mid+1, right)
+    process(array, left, mid)
+    process(array, mid+1, right)
     merge(array, left, mid, right)
 
 def merge(array, left, mid, right):
@@ -37,6 +44,7 @@ def merge(array, left, mid, right):
         p2 += 1
     # 值替换
     array[left:right+1] = help[:]
+    return
 
 
 if __name__ == '__main__':
