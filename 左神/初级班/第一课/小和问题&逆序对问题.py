@@ -19,6 +19,9 @@
 '''
 
 def minSum(array):
+    '''
+    小和问题
+    '''
     if not array or len(array) < 2:
         return 0
     return minSumProcess(array, 0, len(array)-1)
@@ -27,9 +30,9 @@ def minSumProcess(array, left, right):
     if left == right:
         return 0
     mid = left + ((right - left) // 2)
-    return minSumProcess(array, left, mid) + minSumProcess(array, mid+1, right) + merge(array, left, mid, right)
+    return minSumProcess(array, left, mid) + minSumProcess(array, mid+1, right) + minSumMerge(array, left, mid, right)
 
-def merge(array, left, mid, right):
+def minSumMerge(array, left, mid, right):
     help = []
     min_sum = 0
     p1, p2 = left, mid+1
@@ -50,6 +53,54 @@ def merge(array, left, mid, right):
     array[left: right+1] = help[:]
     return min_sum
 
+
+def reverseTuple(array):
+    '''
+    逆序对问题
+    '''
+    if not array or len(array) < 2:
+        return []
+
+    return reverseTupleProcess(array, 0, len(array)-1)
+
+
+def reverseTupleProcess(array, left, right):
+    if left >= right:
+        return []
+    res = []
+    mid = (left + right) // 2
+    res += reverseTupleProcess(array, left, mid)
+    res += reverseTupleProcess(array, mid+1, right)
+    res += reverseTupleMerge(array, left, mid, right)
+    return res
+
+
+def reverseTupleMerge(array, left, mid, right):
+    res = []
+    p1, p2 = left, mid + 1
+    help_array = []
+    while p1 <= mid and p2 <= right:
+        if array[p1] <= array[p2]:
+            help_array.append(array[p1])
+            for val in array[mid+1: p2]:
+                res.append((array[p1], val))
+            p1 += 1
+        else:
+            help_array.append(array[p2])
+            p2 += 1
+    while p1 <= mid:
+        help_array.append(array[p1])
+        for val in array[mid+1: p2]:
+            res.append((array[p1], val))
+        p1 += 1
+    while p2 <= right:
+        help_array.append(array[p2])
+        p2 += 1
+    array[left: right+1] = help_array[:]
+    return res
+
 if __name__ == '__main__':
     array = [1, 3, 4, 2, 5]
     print(minSum(array))
+    array = [1, 3, 4, 2, 5]
+    print(reverseTuple(array))
