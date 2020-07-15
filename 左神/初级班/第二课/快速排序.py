@@ -31,7 +31,7 @@ def partition(array, left, right):
             swap(array, cur, more)
         else:
             cur += 1
-    # 交换array[right]和array[more]的值，因为array[more]一定大于array[right]
+    # 交换array[right]和array[more]的值，因为array[more]一定大于array[right]（right指针指向的就是当前大于等于array[right]元素的值的位置）
     swap(array, more, right)
     return less+1, more
 
