@@ -1,8 +1,8 @@
 # coding=utf-8
 
-class Queue:
+class ArrayQueue:
     array = [None]*10
-    # 队头的位置
+    # start:弹出元素的位置 end:插入元素的下一个位置
     start, end, size = 0, 0, 0
 
     def peek(self):

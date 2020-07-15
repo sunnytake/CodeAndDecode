@@ -1,7 +1,7 @@
 # coding=utf-8
 
 """
-给定一个数组，求如果排序之后，相邻两数的最大差值，
+给定一个数组，求排序之后相邻两数的最大差值，
 要求时间复杂度为O(N)，且要求不能用非基于比较的排序
 """
 
@@ -14,7 +14,7 @@ def maxDiff(array):
         return 0
     min_val, max_val = min(array), max(array)
     # 第一位：桶中是否有数据，第二位：桶中最小值，第三位：桶中最大值
-    buckets = [(False, None, None) for i in range(len(array) + 1)]
+    buckets = [[False, None, None] for i in range(len(array) + 1)]
     for val in array:
         bucket_id = getBucketId(val, len(array), min_val, max_val)
         if not buckets[bucket_id][0]:

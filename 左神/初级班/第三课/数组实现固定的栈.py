@@ -11,7 +11,7 @@ class ArrayStack:
         return self.array[self.index-1]
 
     def push(self, num):
-        if self.index == len(self.array):
+        if self.index > len(self.array):
             raise IndexError
         self.array.append(num)
 
