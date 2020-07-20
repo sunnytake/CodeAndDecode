@@ -15,7 +15,9 @@ def getCirclrEnter(head):
     :return: 有环返回环入口，否则返回null
     '''
     # 一个快指针，每次走两步；一个慢指针，每次走一步
-    p_fast, p_slow = head, head
+    if not head or not head.next:
+        return None
+    p_fast, p_slow = head.next.next, head.next
     while p_fast != p_slow:
         if not p_fast.next or not p_fast.next.next:
             return None

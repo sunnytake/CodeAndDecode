@@ -39,6 +39,7 @@ def isReverseLink(head):
     while p1 and p2 and p1.val == p2.val:
         p1 = p1.next
         p2 = p2.next
+
     if not p1:
         res = True
     else:
