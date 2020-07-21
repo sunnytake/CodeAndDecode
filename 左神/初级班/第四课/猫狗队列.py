@@ -58,10 +58,10 @@ class PetQueue:
         return pets
 
     def pollDog(self):
-        return [self.dog_array.pop(i)[0] for i in range(len(self.dog_array))]
+        return [self.dog_array.pop(0)[0] for i in range(len(self.dog_array))]
 
     def pollCat(self):
-        return [self.cat_array.pop(i)[0] for i in range(len(self.cat_array))]
+        return [self.cat_array.pop(0)[0] for i in range(len(self.cat_array))]
 
     def isEmpty(self):
         return len(self.dog_array) == 0 and len(self.cat_array) == 0

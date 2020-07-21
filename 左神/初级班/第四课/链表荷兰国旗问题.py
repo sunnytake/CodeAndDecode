@@ -12,7 +12,7 @@
 对某部分内部的节点顺序不作要求
 
 进阶：在原问题的要求之上再增加如下两个要求：
-1). 在左、中、右三个部分的内部也做呼死你徐要求，要求每部分里的节点从左到右的顺序与原链表中节点的先后次序一致（稳定性）
+1). 在左、中、右三个部分的内部也做稳定性要求，要求每部分里的节点从左到右的顺序与原链表中节点的先后次序一致（稳定性）
 例如：
 链表9 -> 0 > 4 -> 5 -> 1, pivot=3
 调整后的链表是0 -> 1 -> 9 -> 4 -> 5
@@ -21,36 +21,81 @@
 右部分节点从左到右为9、4、5.在原链表中也是先出现9，然后出现4，最后出现5
 2). 如果链表长度为N，时间复杂度请达到O(N)，额外空间复杂度请达到O(1)
 """
+class ListNode:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
 
-def parition(head, num):
-    pless, pequal, pmore = None, None, None
-    p = head
-    while p:
-        if p.val < num:
-            if pless is None:
-                pless = p
+
+def LinkILand(head, num):
+    if not head:
+        return None
+
+    less_head, equal_head, more_head = None, None, None
+    less, equal, more = None, None, None
+    cur = head
+    while cur:
+        next = cur.next
+        if cur.val < num:
+            if not less:
+                less_head = cur
+                less = cur
             else:
-                pless.next = p
-        elif p.val > num:
-            if pmore is None:
-               pmore = p
+                less.next = cur
+                less = less.next
+            less.next = None
+        elif cur.val > num:
+            if not more:
+                more_head = cur
+                more = cur
             else:
-                pmore.next = p
+                more.next = cur
+                more = more.next
+            more.next = None
         else:
-            if pequal is None:
-                pequal = p
+            if not equal:
+                equal_head = cur
+                equal = cur
             else:
-                pequal.next = p
-        p = p.next
+                equal.next = cur
+                equal = equal.next
+            equal.next = None
+        cur = next
 
-    res = None
-    res = pless if pless is not None else None
-    if res is None:
-        res = pequal if pequal is not None else None
+    # 确定结果的头节点
+    if less_head:
+        res = less_head
+    elif equal:
+        res = equal_head
     else:
-        res.next = pequal if pequal is not None else None
-    if res is None:
-        res = pmore if pmore is not None else None
-    else:
-        res.next = pmore if pmore is not None else None
+        res = more_head
+
+    # 如果头节点位于小于部分
+    if res == less_head:
+        # 连接上等于部分
+        if equal_head:
+            less.next = equal_head
+            # 连接上大于部分
+            if more_head:
+                equal.next = more_head
+        # 直接连上大于部分
+        else:
+            less.next = more_head
+    elif res == equal_head:
+        equal.next = more_head
     return res
+
+if __name__ == '__main__':
+    node9 = ListNode(9)
+    node0 = ListNode(0)
+    node4 = ListNode(4)
+    node5 = ListNode(5)
+    node1 = ListNode(1)
+    node9.next = node0
+    node0.next = node4
+    node4.next = node5
+    node5.next = node1
+    res = LinkILand(node9, 3)
+    while res:
+        print(res.val, end='\t')
+        res = res.next
