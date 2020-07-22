@@ -31,8 +31,7 @@ def isBalanceTree(root):
 def process(root):
     '''
     递归要两个结果：1：二叉树的高度 2.是否为二叉树
-    :param root:
-    :return:
+    优点：不用重复计算树的高度，可以利用下层的高度来计算
     '''
     if not root:
         # 第一位代表是否平衡，第二位为深度

@@ -1,9 +1,13 @@
 # coding=utf-8
 
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left, self.right = None, None
+
 """
 在一个二叉树中，输出从根节点到叶子节点的最长路径。
 """
-
 def getLongestPathRecur(root):
     if not root:
         return []
@@ -15,9 +19,7 @@ def getLongestPathRecur(root):
 
 def getLongestPath(root):
     '''
-    仅仅返回长度，同层次遍历
-    :param root:
-    :return:
+    仅仅返回路径上的节点个数，同层次遍历
     '''
     if not root:
         return []
@@ -38,4 +40,30 @@ def getLongestPath(root):
             level_num = len(queue)
     return depth
 
+if __name__ == '__main__':
+    '''
+        构造树
+                    1
+                 2
+              3     4
+                       5
+                    10    6
+        最长路径：3 -> 2 -> 4 -> 5 -> 6/10，共有4条边
+        最长路径和：3 -> 2 -> 4 -> 5 -> 10，和为3+2+4+5+10=24
+        '''
+    node1 = TreeNode(1)
+    node2 = TreeNode(2)
+    node3 = TreeNode(3)
+    node4 = TreeNode(4)
+    node5 = TreeNode(5)
+    node6 = TreeNode(6)
+    node10 = TreeNode(10)
+    node1.left = node2
+    node2.left = node3
+    node2.right = node4
+    node4.left = node5
+    node5.left = node10
+    node5.right = node6
+    print([node.val for node in getLongestPathRecur(node1)])
+    print(getLongestPath(node1))
 

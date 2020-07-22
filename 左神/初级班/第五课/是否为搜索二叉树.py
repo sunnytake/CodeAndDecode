@@ -15,6 +15,7 @@ def isSearchTree(root):
     while node or stack:
         if node:
             stack.append(node)
+            node = node.left
         else:
             node = stack.pop()
             # 中序遍历的下一个节点

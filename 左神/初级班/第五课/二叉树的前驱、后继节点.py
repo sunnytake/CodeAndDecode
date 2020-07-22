@@ -18,7 +18,7 @@ def nextNode(node):
         while node.left:
             node = node.left
         return node
-    # 无子节点
+    # 无右子节点
     elif node.parent:
         # 若该节点不存在右子树，则利用parent指针向父节点找，
         # 若满足该节点是其父节点的左节点，则该父节点为当前节点的后继节点，

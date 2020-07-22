@@ -14,6 +14,8 @@ def isFullTree(root):
     stack = [root]
     while stack:
         node = stack.pop(0)
+        # 如果state为True，即后续节点应该为叶节点， 并且  有左子节点或右子节点
+        # 如果左子节点为空，但是存在右子节点
         if (state and (node.left or node.right)) or (not node.left and node.right):
             return False
         if node.left:

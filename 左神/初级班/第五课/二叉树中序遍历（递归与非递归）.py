@@ -12,10 +12,11 @@ def inOrderRecur(root):
 def inOrder(root):
     if not root:
         return []
+    # stack用来辅助存储在寻找最左子节点路径上的节点
     stack, res = [], []
     node = root
     while node or stack:
-        # 不空压入栈，当前节点向左
+        # 不空则压入栈，当前节点向左
         if node:
             stack.append(node)
             node = node.left
