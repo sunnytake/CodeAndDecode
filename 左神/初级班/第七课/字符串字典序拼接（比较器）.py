@@ -19,8 +19,10 @@ str+str2 <= str2+str1，str1放前面，否则str2放前面
 import functools
 
 def compator(str1, str2):
+    # 排在后面的情况，返回正数
     if str1+str2 >= str2+str1:
         return 1
+    # 排在前面的情况，返回负数
     else:
         return -1
 
@@ -32,6 +34,7 @@ def lowestString(array):
 
 
 if __name__ == '__main__':
+    # array = ["ab", "cd", "ef"]
     array = ['b', 'ba']
     print(lowestString(array))
 

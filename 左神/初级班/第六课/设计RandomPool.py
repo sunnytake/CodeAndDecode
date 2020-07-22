@@ -23,13 +23,13 @@ class RandomPool:
 
     def delete(self, key):
         if key in self.map_str2index:
-            self.index = self.map_str2index[key]
+            temp_index = self.map_str2index[key]
             new_key = self.map_index2str[self.index-1]
-            self.map_str2index[new_key] = self.index
-            self.map_index2str[self.index] = new_key
+            self.map_str2index[new_key] = temp_index
+            self.map_index2str[temp_index] = new_key
             self.index -= 1
 
     def getRandom(self):
-        random_index = int(random.random()*len(self.index))
+        random_index = int(random.random() * self.index)
         return self.map_index2str[random_index]
 

@@ -5,7 +5,7 @@ class UnionFindSet:
         self.father_map, self.size_map = {}, {}
         for node in nodes:
             self.father_map[node] = node
-            self.father_map[node] = 1
+            self.size_map[node] = 1
 
     def findHead(self, node):
         father = self.father_map[node]
@@ -15,7 +15,7 @@ class UnionFindSet:
         return father
 
     def isSameSet(self, nodea, nodeb):
-        return self.findHead(nodea) == self.findHead(nodeb)
+        return self.findHead[nodea] == self.findHead[nodeb]
 
     def union(self, nodea, nodeb):
         if not nodea or not nodeb:
