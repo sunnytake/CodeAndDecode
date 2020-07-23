@@ -11,33 +11,30 @@ f(n)：今年的牛
 f(n-1)：去年的牛
 f(n-3)：3年前生的牛
 '''
-def numofNiu1(n):
+
+
+def getCows(n):
     if n < 5:
         return n
     nums = [1, 2, 3, 4]
     for i in range(4, n):
-        nums.append(nums[i-1] + nums[i-3])
-    return nums[n-1]
+        nums.append(nums[i - 1] + nums[i - 3])
+    return nums[n - 1]
 
 
-def numOfNiu(n):
-    res = 0
-    def process(niu_map, n):
-        '''
-        :param niu_map:1年，2年，3年的母牛数量
-        :return:
-        '''
-        global res
-        if n == 0:
-            return
-        else:
-            n -= 1
-            res += niu_map[3]
-            temp = niu_map[3]
-            niu_map[3] += niu_map[2]
-            niu_map[2] += niu_map[1]
-            niu_map[1] = temp
-            process(niu_map, n)
-    process({3: 1, 2: 0, 1: 0}, n)
-    return res
+def getCows2(years):
+    # 初始化：0年（刚出生）、1年、2年的母牛都为0头，3年的母牛为1头
+    cows = {0: 0, 1: 0, 2: 0, 3: 1}
+    for i in range(1, years):
+        cows[3] += cows[2]
+        cows[2] = cows[1]
+        cows[1] = cows[0]
+        cows[0] = cows[3]
+    return cows[0] + cows[1] + cows[2] + cows[3]
 
+if __name__ == '__main__':
+    print(getCows(1), getCows2(1))
+    print(getCows(2), getCows2(2))
+    print(getCows(3), getCows2(3))
+    print(getCows(4), getCows2(4))
+    print(getCows(5), getCows2(5))

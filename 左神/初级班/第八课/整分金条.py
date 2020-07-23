@@ -12,12 +12,14 @@
 输入一个数组，返回分割的最小代价
 """
 def splitGold(array):
+    '''
+    哈夫曼树的思想
+    '''
     if len(array) < 2:
         return 0
     stack = MinStack(array)
     res = 0
     while stack.data:
-        print(stack.data)
         min1 = stack.pop()
         min2 = stack.pop()
         temp = min1 + min2
@@ -40,6 +42,9 @@ class MinStack:
             self.insert(val)
 
     def insert(self, val):
+        '''
+        插入到数组尾部，因此是上浮
+        '''
         self.data.append(val)
         index = len(self.data) - 1
         parent = (index - 1) // 2
@@ -55,6 +60,9 @@ class MinStack:
         return res
 
     def heapify(self):
+        '''
+        从上往下调整
+        '''
         index = 0
         left = 2*0 + 1
         while left < len(self.data):
