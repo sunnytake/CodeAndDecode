@@ -15,7 +15,7 @@ def manacher(string):
             # index在max_right右边，以index为中心的回文串还没扫到，此时以index为中心向两边扩展
             recur_length[index] = 1
 
-        # 以index为中心向两边扩展，知道达到边界或者左!=右
+        # 以index为中心向两边扩展，直到达到边界或者左!=右
         while index - recur_length[index] >= 0 and index + recur_length[index] < len(string) and string[index-recur_length[index]] == string[index + recur_length[index]]:
             recur_length[index] += 1
 

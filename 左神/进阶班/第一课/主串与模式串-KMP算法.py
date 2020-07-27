@@ -1,6 +1,10 @@
 # coding=utf-8
 
 def KMP(string, pattern):
+    '''
+    时间复杂度：生成next数组时间复杂度为O(m)，匹配时是对主串的遍历，时间复杂度为O(n)
+    链接：https://mp.weixin.qq.com/s/3gYbmAAFh08BQmT-9quItQ
+    '''
     if not string or not pattern or len(string) < len(pattern):
         return -1
     l1, l2 = 0, 0
@@ -36,3 +40,10 @@ def getNext(pattern):
             nexts[index] = 0
             index += 1
     return nexts
+
+
+if __name__ == '__main__':
+    pattern = "abacab"
+    string = "abacaabacabacab"
+    string = "abacaabacccabaccab"
+    print(KMP(string, pattern))
