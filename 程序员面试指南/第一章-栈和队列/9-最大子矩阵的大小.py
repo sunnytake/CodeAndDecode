@@ -14,24 +14,27 @@
 def maxRecSize(mat):
     if not mat or not mat[0]:
         return 0
+    maxArea = 0
     highs = [0] * len(mat[0])
     for i in range(len(mat)):
         for j in range(len(mat[0])):
             if mat[i][j] == 0:
                 highs[j] = 0
             else:
-                highs[j] += 1
+                highs[j] += mat[i][j]
         maxArea = max(maxArea, maxRecFromBottom(highs))
     return maxArea
 
 def maxRecFromBottom(highs):
-    if not highs or not highs[0]:
+    if not highs:
         return 0
     maxArea = 0
     # 栈顶到栈底依次递减
     stack = []
     for i in range(len(highs)):
         while stack and highs[stack[-1]] >= highs[i]:
+            # 下标为j的元素弹出，说明碰到了小于等于highs[j]的元素，相当于此时碰到了右边界
+            # 等于时，可以确定以highs[i]扩展的矩形面积一定等于以highs[j]扩展的矩形面积，所以也弹出
             j = stack.pop()
             if not stack:
                 k = -1
@@ -50,8 +53,9 @@ def maxRecFromBottom(highs):
         maxArea = max(curArea, maxArea)
     return maxArea
 
-k +1 , j
-
+if __name__ == '__main__':
+    mat = [[1, 0, 1, 1], [1, 1, 1, 1], [1, 1, 1, 0]]
+    print(maxRecSize(mat))
 
 
 

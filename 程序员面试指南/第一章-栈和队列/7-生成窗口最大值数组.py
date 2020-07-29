@@ -17,7 +17,7 @@ def getMaxWindow(arr, w):
     res = []
     max_stack = []
     for i in range(len(arr)):
-        if max_stack and arr[max_stack[-1]] <= arr[i]:
+        while max_stack and arr[max_stack[-1]] <= arr[i]:
             max_stack.pop()
         max_stack.append(i)
         if max_stack[0] == i-w:
@@ -26,7 +26,9 @@ def getMaxWindow(arr, w):
             res.append(arr[max_stack[0]])
     return res
 
-
+if __name__ == '__main__':
+    array = [4, 3, 5, 4, 3, 3, 6, 7]
+    print(getMaxWindow(array, 3))
 
 
 

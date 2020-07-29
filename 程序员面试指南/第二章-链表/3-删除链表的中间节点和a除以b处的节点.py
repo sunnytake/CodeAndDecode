@@ -25,7 +25,7 @@ class Node:
 
 def removeMidNode(head):
     if not head or not head.next:
-        return head
+        return None
     if not head.next.next:
         return head.next
     pre = head
@@ -54,6 +54,7 @@ def removeByRatio(head, a, b):
         cur = head
         while num != 1:
             cur = cur.next
+            num -= 1
         cur.next = cur.next.next
     return head
 

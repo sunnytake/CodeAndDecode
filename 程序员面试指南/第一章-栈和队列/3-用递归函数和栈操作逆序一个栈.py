@@ -24,7 +24,10 @@ def reverse(stack):
     return stack
 
 
-
+if __name__ == '__main__':
+    stack = [1, 2, 3, 4, 5]
+    reverse(stack)
+    print(stack)
 
 
 

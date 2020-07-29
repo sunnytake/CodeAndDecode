@@ -11,6 +11,7 @@ def merge(head1, head2):
     if not head1 or not head2:
         return head1 if head1 is not None else head2
     head = head1 if head1.val <= head2.val else head2.val
+    # 相当于把cur1当做主链，把cur2插进去
     cur1 = head1 if head == head1 else head2
     cur2 = head2 if head == head1 else head1
     pre = None

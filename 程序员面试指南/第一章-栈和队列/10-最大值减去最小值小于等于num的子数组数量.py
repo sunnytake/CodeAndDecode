@@ -12,6 +12,7 @@ def getNum(arr, num):
     res = 0
     j = 0
     for i in range(len(arr)):
+        # j不断右扩，直到不满足条件为止。此时做一次计算，并把i后移一位
         while j < len(arr):
             while min_queue and arr[min_queue[-1]] >= arr[j]:
                 min_queue.pop(-1)

@@ -51,7 +51,7 @@ def noLoop(head1, head2):
     while diff != 0:
         diff -= 1
         long = long.next
-    while long != short:
+    while long and short and long != short:
         long = long.next
         short = short.next
     return short

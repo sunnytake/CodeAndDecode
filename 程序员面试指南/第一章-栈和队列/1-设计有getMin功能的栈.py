@@ -20,7 +20,7 @@ class MyStack:
             self.mins.append(val)
         self.data.append(val)
 
-    def pop(self, val):
+    def pop(self):
         if not self.data:
             raise Exception("stack is empty")
         val = self.data.pop()

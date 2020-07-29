@@ -7,10 +7,13 @@ m个人围成一个圆圈，由第一个人开始报数，报数为3的人出局
 输入：一个环形单向链表的头节点head和报数的值m
 返回：最后生存下来的节点，且这个节点自己组成环形单链表，其他节点都删掉
 '''
+
+
 class Node:
     def __init__(self, val):
         self.val = val
         self.next = None
+
 
 # 时间复杂度为(m*n)：m为报数值，n为节点数（每删除一个节点要遍历m次）
 def josCirclr(head, m):
@@ -30,6 +33,7 @@ def josCirclr(head, m):
         head = last.next
     return head
 
+
 def josKill2(head, m):
     if not head or not head.next or m < 1:
         return head
@@ -44,10 +48,28 @@ def josKill2(head, m):
     head.next = head
     return head
 
+
 def getLive(length, m):
     if length == 1:
         return 1
-    return (getLive(length-1, m) + m - 1) % length + 1
+    return (getLive(length - 1, m) + m - 1) % length + 1
+
+
+def circlr(head, m):
+    if not head or not head.next:
+        return head
+    node = head
+    while node.next != node:
+        count = 0
+        while count + 1 != m:
+            node = node.next
+            count += 1
+        pre = node
+        next = node.next
+        pre.next = next
+        node = next
+    return node
+
 
 if __name__ == '__main__':
     node1 = Node(1)
@@ -59,32 +81,4 @@ if __name__ == '__main__':
     node3.next = node4
     node4.next = node1
     print(josCirclr(node1, 3).val)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    print(circlr(node1, 3).val)

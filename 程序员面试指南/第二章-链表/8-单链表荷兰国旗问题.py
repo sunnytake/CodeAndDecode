@@ -19,6 +19,7 @@ def listPartition1(head, pivot):
     for node in nodes[1:]:
         pre.next = node
         pre = node
+    nodes[-1].next = None
     return nodes[0]
 
 def arrPartition(nodes, pivot):
@@ -94,6 +95,8 @@ if __name__ == '__main__':
     res = listPartition1(node1, 3)
     while res:
         print(res.val, end='\t')
+        res = res.next
+        input()
 
 
 

@@ -40,11 +40,13 @@ def removeLastKthNode2(head, k):
         cur = cur.next
     if k == 0:
         head = head.next
-        head.pre = None
+        if head.next:
+            head.pre = None
     if k < 0:
         cur = head
         while k + 1 != 0:
             cur = cur.next
+            k += 1
         next = cur.next.next
         cur.next = next
         if next:

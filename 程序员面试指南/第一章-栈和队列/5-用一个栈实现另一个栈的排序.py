@@ -15,7 +15,8 @@ def sortStackByStack(stack):
     return stack
 
 stack = [1, 3, 5, 4, 2]
-print(sortStackByStack(stack))
+sortStackByStack(stack)
+print(stack)
 
 
 

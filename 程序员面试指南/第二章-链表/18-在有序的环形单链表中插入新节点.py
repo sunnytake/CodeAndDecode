@@ -25,11 +25,11 @@ def insertNum(head, num):
         cur = cur.next
     # 插入node
     # 情况1：在cur=head前找到符合条件的插入位置，则将node插入pre和cur中间即可
+    pre.next = node
+    node.next = cur
     # 情况2：没有找到符合条件的插入位置，此时分为两种情况
     #   情况2.1：num大于原链表中所有元素，则node应该为链表尾部
     #   情况2.2：num小于原链表中所有元素，则node应该为链表头部
-    pre.next = node
-    node.next = cur
     return head if head.val < num else node
 
 
