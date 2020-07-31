@@ -1,10 +1,11 @@
 # coding=utf-8
 
-def posOrderRecur(root, res):
+def posOrderRecur(root):
     if not root:
-        return res
-    posOrderRecur(root.left, res)
-    posOrderRecur(root.right, res)
+        return []
+    res = []
+    res += posOrderRecur(root.left)
+    res += posOrderRecur(root.right)
     res.append(root.val)
     return res
 

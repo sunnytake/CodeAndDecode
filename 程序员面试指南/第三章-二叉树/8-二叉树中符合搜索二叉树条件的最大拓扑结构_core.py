@@ -30,7 +30,7 @@ def bstTopoSize(root):
 
 def maxTopo(root, node):
     if root and node and isBstNode(root, node):
-        return maxTopo(root, node.left) + maxTopo(root, node.right)+1
+        return maxTopo(root, node.left) + maxTopo(root, node.right) + 1
     return 0
 
 def isBstNode(root, node):

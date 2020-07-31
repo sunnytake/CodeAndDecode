@@ -1,11 +1,12 @@
 # coding=utf-8
 
-def inOrderRecur(root, res):
+def inOrderRecur(root):
     if not root:
-        return res
-    inOrderRecur(root.left, res)
+        return []
+    res = []
+    res += inOrderRecur(root.left)
     res.append(root.val)
-    inOrderRecur(root.right, res)
+    res += inOrderRecur(root.right)
     return res
 
 def inOrderUnRecur(root):

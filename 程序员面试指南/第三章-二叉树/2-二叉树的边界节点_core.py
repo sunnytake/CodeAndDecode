@@ -20,7 +20,9 @@ def printEdge1(root):
     res = []
     height = getHeight(root, 0)
     # 每一层的最左节点和最右节点
-    level_edges = [[None, None]]*height
+    level_edges = []
+    for i in range(height):
+        level_edges.append([None, None])
     setLevelEdges(root, 0, level_edges)
     # 左边界
     for level in level_edges:

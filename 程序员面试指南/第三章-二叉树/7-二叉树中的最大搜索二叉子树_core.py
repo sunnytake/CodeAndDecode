@@ -41,7 +41,11 @@ def getBiggestSubBst(root):
     return posOrder(root, record)
 
 def posOrder(root, record):
+    '''
+    返回以root为根的树上的最大搜索二叉树的头节点
+    '''
     if not root:
+        record = [None, None, None]
         return None
     lBst = posOrder(root.left, record)
     left_size, left_min, left_max = record
@@ -49,7 +53,7 @@ def posOrder(root, record):
     right_size, right_min, right_max = record
     record[1] = min(left_min, root.val)
     record[2] = max(right_max, root.val)
-    if root.left == lBst and root.right == rBst and (not left_max or left_max < root.val) and (not right_min or root.val < root.val):
+    if root.left == lBst and root.right == rBst and (not left_max or left_max < root.val) and (not right_min or root.val < right_min):
         record[0] = left_size + right_size + 1
         return root
     record[0] = max(left_size, right_size)

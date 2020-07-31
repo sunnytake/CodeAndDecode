@@ -1,11 +1,11 @@
 # coding=utf-8
 
-def preOrderRecur(root, res):
+def preOrderRecur(root):
     if not root:
-        return res
-    res.append(root.val)
-    preOrderRecur(root.left, res)
-    preOrderRecur(root.right, res)
+        return []
+    res = [root.val]
+    res += preOrderRecur(root.left)
+    res += preOrderRecur(root.right)
     return res
 
 def preOrderUnRecur(root):

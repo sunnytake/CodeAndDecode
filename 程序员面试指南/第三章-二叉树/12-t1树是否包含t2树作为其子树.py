@@ -15,6 +15,23 @@ t1树有与t2树拓扑结构完全相同的子树，所以返回true
 
 先序遍历+KMP
 '''
+
+
+def contain(root1, root2):
+    '''
+    时间复杂度为O(NxM)：root1的节点数 x root2的节点数
+    '''
+    return process(root1, root2) or process(root1.left, root2) or process(root1.right, root2)
+
+
+def process(root1, root2):
+    if not root1 and not root2:
+        return True
+    if root1 and root2 and root1.val == root2.val:
+        return process(root1.left, root2.left) and process(root1.right, root2.right)
+    return False
+
+
 def isSubTree(root1, root2):
     prestr1 = serialByPre(root1)
     prestr2 = serialByPre(root2)

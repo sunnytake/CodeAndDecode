@@ -1,7 +1,7 @@
 # coding=utf-8
 '''
 给定一个整形数组，已知其中没有重复值，判断arr是否可能是节点值类型为整数
-的搜索二叉树的遍历的结果。
+的搜索二叉树后序遍历的结果。
 进阶：如果整形数组中没有重复值，且已知是一棵搜索二叉树的后序遍历结果，通过
 数组重建二叉树。
 '''
@@ -9,7 +9,7 @@
 def isPosArray(array):
     if not array:
         return False
-    isPos(array, 0, len(array)-1)
+    return isPos(array, 0, len(array)-1)
 
 def isPos(array, start, end):
     if start == end:
