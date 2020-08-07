@@ -8,7 +8,7 @@
 def isDeformation(str1, str2):
     if not str1 or not str2 or len(str1) != len(str2):
         return False
-    chars = [0] * 255
+    chars = [0] * 256
     for char in str1:
         chars[ord(char)] += 1
     for char in str2:

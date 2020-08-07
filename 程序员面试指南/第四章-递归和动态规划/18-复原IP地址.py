@@ -12,16 +12,6 @@ def splitIps(string):
     process(string, -1, 3, [], res)
     return res
 
-def valid(segment):
-    return int(segment) <= 255 if segment[0] != '0' else len(segment) == 1
-
-def update_output(string, cur_pos, segments, res):
-    segment = string[cur_pos+1:]
-    if valid(segment):
-        segments.append(segment)
-        res.append('.'.join(segments))
-        segments.pop()
-
 def process(string, prev_pos, left_dots, segments, res):
     for cur_pos in range(prev_pos+1, min(len(string)-1, prev_pos+4)):
         segment = string[prev_pos+1: cur_pos+1]
@@ -32,6 +22,18 @@ def process(string, prev_pos, left_dots, segments, res):
             else:
                 process(string, cur_pos, left_dots-1, segments, res)
             segments.pop()
+
+
+def valid(segment):
+    return int(segment) <= 255 if segment[0] != '0' else len(segment) == 1
+
+def update_output(string, cur_pos, segments, res):
+    segment = string[cur_pos+1:]
+    if valid(segment):
+        segments.append(segment)
+        res.append('.'.join(segments))
+        segments.pop()
+
 
 if __name__ == '__main__':
     string = "25525511135"

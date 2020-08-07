@@ -27,12 +27,31 @@ def win1(arr):
     return max(first(arr, 0, len(arr)-1), last(arr, 0, len(arr)-1))
 
 def first(arr, start, end):
+    '''
+    函数含义：如果array[i...j]这个排列上的纸牌被绝顶聪明的人先拿，最终能获得什么分数。
+    分析first(i, j)：
+    1.如果i==j，即array[i...j]上只剩一张纸牌。当然会被先拿纸牌的人拿走，所以返回array[i]
+    2.如果i!=j。当前拿纸牌的人有两种选择，要么拿走array[i]，要么拿走array[j]。
+    如果拿走array[i]，那么排列将剩下array[i+1...j]。对当前的玩家来说，面对array[i+1...j]
+    排列的纸牌，他成了后拿的人，所以后续他能获得的分数为last(i+1,j)。
+    如果拿走array[j]，那么排列将剩下array[i...j-1]。对当前的玩家来说，面对array[i...j-1]
+    排列的纸牌，他成了后拿的人，所以后续他能获得分数为last(i, j-1)。
+    作为绝顶聪明的人，必然会在两种决策中选最优的，所以返回max(array[i]+last(i+1,j), array[j]+last(i, j-1))
+    '''
     # 模仿A的行为
     if start == end:
         return arr[start]
     return max(arr[start] + last(arr, start+1, end), arr[end] + last(arr, start, end-1))
 
 def last(arr, start, end):
+    '''
+    函数含义：如果array[i...j]这个排列上的纸牌被绝顶聪明的人后拿，最终能获得什么分数。
+    1.如果i==j，即array[i...j]上只有一张牌。作为后拿牌的人必然什么也得不到，返回0
+    2.如果i!=j。根据函数last的定义，玩家的对手会先拿纸牌。对手要么拿走array[i]，要么拿走array[j]。
+    如果对手拿走array[i]，那么排列将剩下array[i+1...j]，然后伦到玩家先拿。
+    如果对手拿走array[j]，那么排列将剩下array[i...j-1]，然后伦到玩家先拿。
+    对手也是绝顶聪明的人，所以必然会把最差的情况留给玩家
+    '''
     # 模仿B的行为
     if start == end:
         return 0

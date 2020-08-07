@@ -13,7 +13,8 @@ N=2时，满足中序遍历为{1,2}的二叉树结构，有如下两种：
 def numTrees(n):
     if n < 2:
         return 1
-    dp_num = [1]
+    dp_num = [0] * (n+1)
+    dp_num[0] = [1]
     # N从1到n+1
     for i in range(1, n+1):
         # 根节点依次为第1个，第2个。。。到第i个，左边依次有j-1个节点，右边有i-j个节点
@@ -30,13 +31,13 @@ def generateTrees(n):
     return generate(1, n)
 
 def generate(start, end):
-    res = []
     if start > end:
-        return None
+        return []
+    res = []
     for i in range(start, end+1):
         root = Node(i)
         left_subtrees = generate(start, i-1)
-        right_subtrees = generate(start, i+1, end)
+        right_subtrees = generate(i+1, end)
         for left_tree in left_subtrees:
             for right_tree in right_subtrees:
                 root.left = left_tree

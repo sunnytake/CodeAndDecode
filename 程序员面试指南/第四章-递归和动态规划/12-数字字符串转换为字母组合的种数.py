@@ -14,10 +14,11 @@ def num1(string):
 def process(string, index):
     if index == len(string):
         return 1
+    # 此时面对的是以‘0’开头的string[index:]，不可能转换
     if string[index] == '0':
         return 0
     res = process(string, index+1)
-    if index+1 < len(string) and (ord(str[index])- ord('0'))*10 + string[index+1] < 27:
+    if index+1 < len(string) and (int(string[index])*10 + int(string[index+1]) < 27):
         res += process(string, index+2)
     return res
 
@@ -35,7 +36,7 @@ str[i]的具体情况决定了p(i)是等于0还是等于p(i+1)，还是等于p(i
 def num2(string):
     if not string:
         return 0
-    cur = 1 if string[len(string)-1] == '0' else 0
+    cur = 0 if string[-1] == '0' else 1
     next = 1
     for i in range(len(string)-2, -1, -1):
         if string[i] == '0':
@@ -43,7 +44,7 @@ def num2(string):
             cur = 0
         else:
             temp = cur
-            if (ord(string[i] - ord('0')))*10 + ord(string[i+1] - ord('0')) < 27:
+            if int(string[i])*10 + int(string[i+1]) < 27:
                 cur += next
                 next = temp
     return cur

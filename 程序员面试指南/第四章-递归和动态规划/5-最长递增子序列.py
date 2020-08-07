@@ -6,6 +6,11 @@ arr = [2,1,5,3,6,4,8,9,7]，返回的最长递增子序列为[1,3,4,8,9]
 
 # 时间复杂度为O(N^2)
 def getdp1(arr):
+    '''
+    dp[i]表示以array[i]结尾时，array[0...i]中的最大递增子序列长度
+    :param arr:
+    :return:
+    '''
     dp = [1]*len(arr)
     for i in range(len(arr)):
         for j in range(i):

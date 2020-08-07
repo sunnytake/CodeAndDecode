@@ -31,7 +31,7 @@ def minCoins1(arr, aim):
             temp_min = None
             if j - arr[i] >= 0 and dp[i][j - arr[i]] is not None:
                 temp_min = dp[i][j - arr[i]] + 1
-            if temp_min is None or dp[i-1][j] is None:
+            if (temp_min and not dp[i-1][j]) or (dp[i-1][j] and not temp_min):
                 dp[i][j] = temp_min if temp_min is not None else dp[i-1][j]
             else:
                 dp[i][j] = min(temp_min, dp[i-1][j])
@@ -67,7 +67,7 @@ arr=[5,2,5,3], aim=15
 arr = [5,2,5,3], aim=0
 不用任何货币就可以组成0元，返回0
 
-dp[i][j]含义：使用aim[0...i]的情况下（每个值仅代表一张货币），组成j所需的最小张数
+dp[i][j]含义：array[0...i]的情况下（每个值仅代表一张货币），组成j所需的最小张数
 dp[0...N-1][0]：表示找的钱数为0时需要的最少张数，钱数为0时完全不需要任何货币，设为0即可
 '''
 def minCoins3(arr, aim):

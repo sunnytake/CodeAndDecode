@@ -12,8 +12,10 @@ str1="abc", str2="abc", ic=5,dc=3,rc=2
 dp[i][j]代表str1[0...i-1]编辑成str2[0...j-1]的最小代价
 '''
 def minCost1(str1, str2, ic, dc, rc):
-    if not str1 or not str2:
-        return 0
+    if not str1:
+        return len(str2) * ic
+    elif not str2:
+        return len(str1) * dc
     dp = []
     for i in range(len(str1)+1):
         dp.append([0]*(len(str2)+1))
@@ -38,8 +40,10 @@ def minCost1(str1, str2, ic, dc, rc):
 
 
 def minCost2(str1, str2, ic, dc, rc):
-    if not str1 or not str2:
-        return 0
+    if not str1:
+        return len(str2) * ic
+    elif not str2:
+        return len(str1) * dc
     if len(str1) >= len(str2):
         long_str, short_str = str1, str2
     else:
@@ -51,10 +55,10 @@ def minCost2(str1, str2, ic, dc, rc):
     for i in range(len(short_str)+1):
         dp[i] = ic * i
 
-    for i in range(len(long_str)+1):
+    for i in range(1, len(long_str)+1):
         pre = dp[0]
         dp[0] = dc * i
-        for j in range(len(short_str)+1):
+        for j in range(1, len(short_str)+1):
             temp = dp[j]
             if long_str[i-1] == short_str[j-1]:
                 dp[j] = pre

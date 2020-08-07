@@ -9,7 +9,7 @@ str1="AB"，str2="12"。那么"AB12"、"A1B2"、"A12B"、"1A2B"和"1AB2"等都�
 dp[i][j]代表aim[0...i+j-1]是否被str1[0...i-1]和str2[0...j-1]交错组成
 '''
 def isCross1(str1, str2, aim):
-    if not str1 or not str2 or not aim:
+    if str1 is None or str2 is None or aim is None:
         return False
     if len(str1) + len(str2) != len(aim):
         return False
@@ -18,12 +18,12 @@ def isCross1(str1, str2, aim):
         dp.append([False]*(len(str2)+1))
     dp[0][0] = True
     # 行初始化
-    for i in range(len(str1)+1):
+    for i in range(1, len(str1)+1):
         if str1[i-1] != aim[i-1]:
             break
         dp[i][0] = True
     # 列初始化
-    for j in range(len(str2)+1):
+    for j in range(1, len(str2)+1):
         if str2[j-1] != aim[j-1]:
             break
         dp[0][j] = True

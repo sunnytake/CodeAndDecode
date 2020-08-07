@@ -28,8 +28,10 @@ def bs(root, low, high):
     if low == high:
         return 1
     if mostLeftLevel(root.right, low+1) == high:
+        # 说明左子树是高度为high - low的满二叉树
         return 2 ^ (high - low) + bs(root.right, low+1, high)
     else:
+        # 说明右子树是高为high -low - 1的满二叉树
         return 2 ^ (high - low - 1) + bs(root.left, low+1, high)
 
 def mostLeftLevel(root, level):
